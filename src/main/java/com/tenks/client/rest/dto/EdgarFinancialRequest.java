@@ -1,5 +1,6 @@
 package com.tenks.client.rest.dto;
 
+import com.google.common.base.Strings;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 
 /**
@@ -15,10 +16,8 @@ public class EdgarFinancialRequest {
 
     public EdgarFinancialRequest(EdgarFinancialRequestType edgarFinancialRequestType, String symbolTicker) {
         // Fail Fast
-        // TODO asserts
         assert(edgarFinancialRequestType != null);
-        // TODO make this similar to string utils hasText
-        assert(symbolTicker != null);
+        assert(!Strings.isNullOrEmpty(symbolTicker));
 
         this.edgarFinancialRequestType = edgarFinancialRequestType;
         this.symbolTicker = symbolTicker;

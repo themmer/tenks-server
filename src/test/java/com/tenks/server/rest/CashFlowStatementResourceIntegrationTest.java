@@ -42,6 +42,7 @@ public class CashFlowStatementResourceIntegrationTest extends ResourceTest {
         final String response = target("cashFlow").queryParam(TenKsConstants.SymbolTicker, "MSFT"). //
             request(MediaType.APPLICATION_JSON).get(String.class);
         assertNotNull(response);
+        System.out.println(response);
         assertTrue(response.contains("capitalExpenditures"));
     }
 } 

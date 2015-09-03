@@ -41,6 +41,7 @@ public class IncomeStatementResourceIntegrationTest extends ResourceTest {
         final String response = target("income").queryParam(TenKsConstants.SymbolTicker, "MSFT"). //
             request(MediaType.APPLICATION_JSON).get(String.class);
         assertNotNull(response);
+        System.out.println("resp: " + response);
         assertTrue(response.contains("totalRevenue"));
     }
 }

@@ -41,6 +41,7 @@ public class BalanceSheetResourceIntegrationTest extends ResourceTest {
         final String response = target("balanceSheet").queryParam(TenKsConstants.SymbolTicker, "MSFT"). //
                 request(MediaType.APPLICATION_JSON).get(String.class);
         assertNotNull(response);
+        System.out.println(response);
         assertTrue(response.contains("totalStockholdersEquity"));
     }
 } 

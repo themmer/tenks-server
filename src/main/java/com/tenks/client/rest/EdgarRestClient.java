@@ -33,13 +33,11 @@ public abstract class EdgarRestClient<T extends EdgarKeyValueResponse, E> {
     }
 
     private String getJsonResponse(EdgarFinancialRequest edgarFinancialRequest) {
-        // TODO check cache otherwise do the following below
-
-        // TODO error handling with asserts
         assert (edgarFinancialRequest.getNumberOfPeriods() > 0);
         assert (edgarFinancialRequest.getEdgarFinancialRequestType() != null);
 
-//        ClientResponse clientResponse =
+        // TODO check cache otherwise do the following below
+
         Invocation.Builder request = webTarget. //
                 path("v2/corefinancials/ann"). //
                 queryParam(EdgarConstants.NumberOfPeriodsParam, String.valueOf(edgarFinancialRequest.getNumberOfPeriods())). //
