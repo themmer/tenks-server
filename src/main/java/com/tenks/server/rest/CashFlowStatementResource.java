@@ -9,6 +9,7 @@ import com.tenks.client.rest.dto.EdgarFinancialRequest;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.client.rest.util.TenKsConstants;
 import com.tenks.dto.CashFlowStatementConsolidated;
+import com.tenks.dto.ResponseWrapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -30,15 +31,15 @@ public class CashFlowStatementResource {
         assert (symbolTicker != null);
 
         EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, symbolTicker);
-        CashFlowStatementConsolidated cashFlowStatement = edgarCashFlowStatementClient.getCashFlowStatement(request);
+        ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementClient.getCashFlowStatement(request);
 
         // TODO inject Gson - should be thread safe
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder. //
                 serializeNulls(). //
                 create();
-        String jsonString = gson.toJson(cashFlowStatement);
-        System.out.println("gson result: "+jsonString);
+        String jsonString = gson.toJson(responseWrapper);
+        System.out.println("gson result: " + jsonString);
 
         return jsonString;
 //        return Response.status(200).entity(output).build();

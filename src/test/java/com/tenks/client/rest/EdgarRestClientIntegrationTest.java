@@ -5,6 +5,7 @@ import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.dto.BalanceSheetConsolidated;
 import com.tenks.dto.CashFlowStatementConsolidated;
 import com.tenks.dto.IncomeStatementConsolidated;
+import com.tenks.dto.ResponseWrapper;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -29,8 +30,11 @@ public class EdgarRestClientIntegrationTest {
     @Test
     public void testExecuteBalanceSheetConsolidated() throws Exception {
         EdgarFinancialRequest edgarFinancialRequest = new EdgarFinancialRequest(EdgarFinancialRequestType.BalanceSheetConsolidated, "MSFT");
-        BalanceSheetConsolidated balanceSheetConsolidated = edgarBalanceSheetRestClient.getBalanceSheet(edgarFinancialRequest);
-        assertNotNull(balanceSheetConsolidated);
+        ResponseWrapper<BalanceSheetConsolidated> responseWrapper = edgarBalanceSheetRestClient.getBalanceSheet(edgarFinancialRequest);
+        assertNotNull(responseWrapper);
+        assertFalse(responseWrapper.isError());
+        assertNotNull(responseWrapper.getResultsList());
+        assertTrue(responseWrapper.getResultsList().size() == 1);
     }
 
     /**
@@ -39,8 +43,11 @@ public class EdgarRestClientIntegrationTest {
     @Test
     public void testExecuteIncomeStatementConsolidated() throws Exception {
         EdgarFinancialRequest edgarFinancialRequest = new EdgarFinancialRequest(EdgarFinancialRequestType.IncomeStatementConsolidated, "MSFT");
-        IncomeStatementConsolidated incomeStatementConsolidated = edgarIncomeStatementRestClient.getIncomeStatement(edgarFinancialRequest);
-        assertNotNull(incomeStatementConsolidated);
+        ResponseWrapper<IncomeStatementConsolidated> responseWrapper = edgarIncomeStatementRestClient.getIncomeStatement(edgarFinancialRequest);
+        assertNotNull(responseWrapper);
+        assertFalse(responseWrapper.isError());
+        assertNotNull(responseWrapper.getResultsList());
+        assertTrue(responseWrapper.getResultsList().size() == 1);
     }
 
     /**
@@ -49,8 +56,11 @@ public class EdgarRestClientIntegrationTest {
     @Test
     public void testExecuteCashFlowStatementConsolidated() throws Exception {
         EdgarFinancialRequest edgarFinancialRequest = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, "MSFT");
-        CashFlowStatementConsolidated cashFlowStatementConsolidated = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
-        assertNotNull(cashFlowStatementConsolidated);
+        ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
+        assertNotNull(responseWrapper);
+        assertFalse(responseWrapper.isError());
+        assertNotNull(responseWrapper.getResultsList());
+        assertTrue(responseWrapper.getResultsList().size() == 1);
     }
 
     /**
@@ -60,8 +70,11 @@ public class EdgarRestClientIntegrationTest {
     @Test(threadPoolSize = 2, invocationCount = 2,  timeOut = 15000)
     public void testMultiThreadCashFlowStatementConsolidated() throws Exception {
         EdgarFinancialRequest edgarFinancialRequest = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, "MSFT");
-        CashFlowStatementConsolidated cashFlowStatementConsolidated = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
-        assertNotNull(cashFlowStatementConsolidated);
+        ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
+        assertNotNull(responseWrapper);
+        assertFalse(responseWrapper.isError());
+        assertNotNull(responseWrapper.getResultsList());
+        assertTrue(responseWrapper.getResultsList().size() == 1);
     }
 
 
@@ -74,7 +87,10 @@ public class EdgarRestClientIntegrationTest {
 //    @Test(threadPoolSize = 3, invocationCount = 3,  timeOut = 15000, expectedExceptions = AssertionError.class)
     public void testMultiThreadException() throws Exception {
         EdgarFinancialRequest edgarFinancialRequest = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, "MSFT");
-        CashFlowStatementConsolidated cashFlowStatementConsolidated = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
-        assertNotNull(cashFlowStatementConsolidated);
+        ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
+        assertNotNull(responseWrapper);
+        assertFalse(responseWrapper.isError());
+        assertNotNull(responseWrapper.getResultsList());
+        assertTrue(responseWrapper.getResultsList().size() == 1);
     }
 } 

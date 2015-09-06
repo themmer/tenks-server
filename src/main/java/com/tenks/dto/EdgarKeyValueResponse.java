@@ -9,6 +9,7 @@ import java.util.Map;
  * Created by Tim on 7/28/2015.
  */
 public abstract class EdgarKeyValueResponse<E extends Enum<E>> {
+
     public EdgarKeyValueResponse populateData(Map<String, String> keyValueResponseHashMap) {
         System.out.println("map before object conversion: " + keyValueResponseHashMap);
         // TODO lets do generics here and the other ones

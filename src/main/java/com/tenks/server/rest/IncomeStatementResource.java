@@ -11,6 +11,7 @@ import com.tenks.client.rest.dto.EdgarFinancialRequest;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.client.rest.util.TenKsConstants;
 import com.tenks.dto.IncomeStatementConsolidated;
+import com.tenks.dto.ResponseWrapper;
 
 import javax.validation.constraints.AssertTrue;
 import javax.ws.rs.*;
@@ -34,14 +35,14 @@ public class IncomeStatementResource {
         assert (symbolTicker != null);
 
         EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.IncomeStatementConsolidated, symbolTicker);
-        IncomeStatementConsolidated incomeStatement = edgarIncomeStatementClient.getIncomeStatement(request);
+        ResponseWrapper<IncomeStatementConsolidated> responseWrapper = edgarIncomeStatementClient.getIncomeStatement(request);
 
         // TODO inject Gson - should be thread safe
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder. //
                 serializeNulls(). //
                 create();
-        String jsonString = gson.toJson(incomeStatement);
+        String jsonString = gson.toJson(responseWrapper);
         System.out.println("gson result: "+jsonString);
 
         return jsonString;

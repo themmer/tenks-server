@@ -11,9 +11,11 @@ import com.tenks.client.rest.dto.EdgarFinancialRequest;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.client.rest.util.TenKsConstants;
 import com.tenks.dto.BalanceSheetConsolidated;
+import com.tenks.dto.ResponseWrapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /** Example resource class hosted at the URI path "/myresource"
  */
@@ -27,22 +29,23 @@ public class BalanceSheetResource {
      * type.
      * @return String that will be send back as a response of type "text/plain".
      */
-    @GET 
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getBalanceSheet(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
+    public Response getBalanceSheet(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
         assert (symbolTicker != null);
 
         EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.BalanceSheetConsolidated, symbolTicker);
-        BalanceSheetConsolidated balanceSheet = edgarBalanceSheetClient.getBalanceSheet(request);
+        ResponseWrapper<BalanceSheetConsolidated> responseWrapper = edgarBalanceSheetClient.getBalanceSheet(request);
 
         // TODO inject Gson - should be thread safe
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder. //
                 serializeNulls(). //
                 create();
-        String jsonString = gson.toJson(balanceSheet);
-        System.out.println("gson result: "+jsonString);
-        return jsonString;
+        String jsonString = gson.toJson(responseWrapper);
+        System.out.println("gson result: " + jsonString);
+        return Response.status(Response.Status.OK).entity(jsonString).build();
+//        return jsonString;
 //        return Response.status(200).entity(output).build();
     }
 }
