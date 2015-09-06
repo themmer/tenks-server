@@ -1,5 +1,7 @@
 package com.tenks.dto;
 
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,16 +9,9 @@ import java.util.List;
  */
 public class ResponseWrapper<T extends EdgarKeyValueResponse> {
     private boolean isError = false;
-    private String errorMessage;
-    private List<T> resultsList;
-
-    public List<T> getResultsList() {
-        return resultsList;
-    }
-
-    public void setResultsList(List<T> resultsList) {
-        this.resultsList = resultsList;
-    }
+    private List<Error> errors;
+    private List<T> data;
+    private String meta;
 
     public boolean isError() {
         return isError;
@@ -26,11 +21,35 @@ public class ResponseWrapper<T extends EdgarKeyValueResponse> {
         this.isError = isError;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public List<Error> getErrors() {
+        return errors;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
+    }
+
+    public List<T> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
+    public String getMeta() {
+        return meta;
+    }
+
+    public void setMeta(String meta) {
+        this.meta = meta;
+    }
+
+    public void addErrorMessage(int statusCode, String errorString) {
+        if(errors == null) {
+            errors = new ArrayList<Error>();
+            Error error = new Error(statusCode, errorString);
+            errors.add(error);
+        }
     }
 }

@@ -18,7 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/** Example resource class hosted at the URI path "/myresource"
+/** Example resource class hosted at the URI path "/income"
  */
 @Path("/income")
 public class IncomeStatementResource {
@@ -31,7 +31,7 @@ public class IncomeStatementResource {
      */
     @GET 
     @Produces(MediaType.APPLICATION_JSON)
-    public String getIt(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
+    public Response Response(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
         assert (symbolTicker != null);
 
         EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.IncomeStatementConsolidated, symbolTicker);
@@ -45,7 +45,6 @@ public class IncomeStatementResource {
         String jsonString = gson.toJson(responseWrapper);
         System.out.println("gson result: "+jsonString);
 
-        return jsonString;
-//        return Response.status(200).entity(output).build();
+        return Response.status(200).entity(jsonString).build();
     }
 }

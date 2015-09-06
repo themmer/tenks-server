@@ -33,8 +33,8 @@ public class EdgarRestClientIntegrationTest {
         ResponseWrapper<BalanceSheetConsolidated> responseWrapper = edgarBalanceSheetRestClient.getBalanceSheet(edgarFinancialRequest);
         assertNotNull(responseWrapper);
         assertFalse(responseWrapper.isError());
-        assertNotNull(responseWrapper.getResultsList());
-        assertTrue(responseWrapper.getResultsList().size() == 1);
+        assertNotNull(responseWrapper.getData());
+        assertTrue(responseWrapper.getData().size() == 1);
     }
 
     /**
@@ -46,8 +46,8 @@ public class EdgarRestClientIntegrationTest {
         ResponseWrapper<IncomeStatementConsolidated> responseWrapper = edgarIncomeStatementRestClient.getIncomeStatement(edgarFinancialRequest);
         assertNotNull(responseWrapper);
         assertFalse(responseWrapper.isError());
-        assertNotNull(responseWrapper.getResultsList());
-        assertTrue(responseWrapper.getResultsList().size() == 1);
+        assertNotNull(responseWrapper.getData());
+        assertTrue(responseWrapper.getData().size() == 1);
     }
 
     /**
@@ -59,8 +59,8 @@ public class EdgarRestClientIntegrationTest {
         ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
         assertNotNull(responseWrapper);
         assertFalse(responseWrapper.isError());
-        assertNotNull(responseWrapper.getResultsList());
-        assertTrue(responseWrapper.getResultsList().size() == 1);
+        assertNotNull(responseWrapper.getData());
+        assertTrue(responseWrapper.getData().size() == 1);
     }
 
     /**
@@ -73,8 +73,8 @@ public class EdgarRestClientIntegrationTest {
         ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
         assertNotNull(responseWrapper);
         assertFalse(responseWrapper.isError());
-        assertNotNull(responseWrapper.getResultsList());
-        assertTrue(responseWrapper.getResultsList().size() == 1);
+        assertNotNull(responseWrapper.getData());
+        assertTrue(responseWrapper.getData().size() == 1);
     }
 
 
@@ -90,7 +90,7 @@ public class EdgarRestClientIntegrationTest {
         ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementRestClient.getCashFlowStatement(edgarFinancialRequest);
         assertNotNull(responseWrapper);
         assertFalse(responseWrapper.isError());
-        assertNotNull(responseWrapper.getResultsList());
-        assertTrue(responseWrapper.getResultsList().size() == 1);
+        assertNotNull(responseWrapper.getData());
+        assertTrue(responseWrapper.getData().size() == 1);
     }
 } 

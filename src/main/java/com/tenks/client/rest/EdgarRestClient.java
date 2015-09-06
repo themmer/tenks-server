@@ -49,7 +49,7 @@ public abstract class EdgarRestClient<T extends EdgarKeyValueResponse, E> {
         if (clientResponse.getStatus() != Response.Status.OK.getStatusCode()) {
             String errorString = clientResponse.readEntity(String.class);
             responseWrapper.setIsError(true);
-            responseWrapper.setErrorMessage(errorString);
+            responseWrapper.addErrorMessage(clientResponse.getStatus(), errorString);
             // TODO handle errors and also log here
             System.out.println(errorString);
             System.out.println(clientResponse.getStatus());
@@ -58,7 +58,7 @@ public abstract class EdgarRestClient<T extends EdgarKeyValueResponse, E> {
             String jsonResponse = clientResponse.readEntity(String.class);
             List<T> resultList = transformStringToObject(jsonResponse, edgarFinancialRequest.getEdgarFinancialRequestType());
             // TODO if this is null that means error - I'm not a fan of returning null nor empty object in that scenario....
-            responseWrapper.setResultsList(resultList);
+            responseWrapper.setData(resultList);
         }
         return responseWrapper;
     }

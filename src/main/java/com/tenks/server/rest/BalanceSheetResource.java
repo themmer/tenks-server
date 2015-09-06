@@ -17,7 +17,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/** Example resource class hosted at the URI path "/myresource"
+/** Example resource class hosted at the URI path "/balanceSheet"
  */
 @Path("/balanceSheet")
 public class BalanceSheetResource {
@@ -45,7 +45,5 @@ public class BalanceSheetResource {
         String jsonString = gson.toJson(responseWrapper);
         System.out.println("gson result: " + jsonString);
         return Response.status(Response.Status.OK).entity(jsonString).build();
-//        return jsonString;
-//        return Response.status(200).entity(output).build();
     }
 }
