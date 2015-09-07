@@ -14,6 +14,9 @@ public class TenksApplicationModule implements Module {
 
     @Override
     public void configure(Binder binder) {
+
+        // TODO - add logger
+
         // TODO implement
         binder.bind(EdgarBalanceSheetClient.class).to(EdgarBalanceSheetRestClientImpl.class).in(Singleton.class);
         binder.bind(EdgarIncomeStatementClient.class).to(EdgarIncomeStatementRestClientImpl.class).in(Singleton.class);

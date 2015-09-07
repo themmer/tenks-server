@@ -19,21 +19,21 @@ public class EdgarConstants {
     public static final String TicketSymbolsParam = "primarysymbols";
     public static final String AppKeyParam = "appkey";
 
-    private static final String AppKey1 = "en652xxe8m83emkarff4rzn9";
-    private static final String AppKey2 = "";
-    private static final String AppKey3 = "";
-    private static final String AppKey4 = "";
-    private static final String AppKey5 = "";
+    private static final String AppKey1 = "en652xxe8m83emkarff4rzn9"; // requested extension on this one - pending
+    private static final String AppKey2 = "7zp6pxxzasj9jd6jqavnst8t"; // one year only
 
     static {
+        AppKeyList.add(AppKey2);
         AppKeyList.add(AppKey1);
     }
 
     // TODO I would like round robin instead of a random
-    // Workaround for limit of api calls - 2 per second
+    // Workaround for limit of api calls - 2 per second / 5000 day
     public static String getRandomAppKey() {
         ThreadLocalRandom currentThreadForRandom = ThreadLocalRandom.current();
         int randomInt = currentThreadForRandom.nextInt(AppKeyList.size());
-        return AppKeyList.get(randomInt);
+        String key = AppKeyList.get(randomInt);
+        System.out.println("we are using this key for calling the service: " + key);
+        return key;
     }
 }
