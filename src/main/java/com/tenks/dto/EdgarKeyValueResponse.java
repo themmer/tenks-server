@@ -2,6 +2,7 @@ package com.tenks.dto;
 
 import com.tenks.client.rest.util.EdgarBalanceSheetConsolidatedFields;
 
+import java.lang.reflect.Field;
 import java.util.EnumSet;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public abstract class EdgarKeyValueResponse<E extends Enum<E>> {
             String fieldString = field.name();
             if (keyValueResponseHashMap.containsKey(fieldString)) {
                 String value = keyValueResponseHashMap.get(fieldString);
-                transformKeyValueIntoObject(field, value);
+                set(this, getFieldName(field), value);
             } else {
                 // TODO let's just log a warning here in log4j
                 throw new RuntimeException("Cannot find expected field key - " + field + " - in the response from Edgar service for Balance Sheet Consolidated");
@@ -38,7 +39,27 @@ public abstract class EdgarKeyValueResponse<E extends Enum<E>> {
         return this;
     }
 
-    abstract protected void transformKeyValueIntoObject(E field, String value);
-
     abstract public Class<E> getEnumType();
+    abstract public String getFieldName(E enumFieldType);
+
+    public static boolean set(EdgarKeyValueResponse object, String fieldName, Object fieldValue) {
+        Class<?> clazz = object.getClass();
+        if (clazz != null) {
+            try {
+                Field field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                field.set(object, fieldValue);
+                return true;
+            } catch (NoSuchFieldException e) {
+                // TODO log exception
+                e.printStackTrace();
+                clazz = clazz.getSuperclass();
+            } catch (Exception e) {
+                // TODO log exception
+                e.printStackTrace();
+                throw new IllegalStateException(e);
+            }
+        }
+        return false;
+    }
 }

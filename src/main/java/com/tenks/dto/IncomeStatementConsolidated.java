@@ -42,88 +42,12 @@ public class IncomeStatementConsolidated extends EdgarKeyValueResponse<EdgarInco
     }
 
     @Override
-    protected void transformKeyValueIntoObject(EdgarIncomeStatementConsolidatedFields field, String value) {
-        switch (field) {
-            case accountingchange:
-                this.accountingChange = value;
-                break;
-            case basicepsnetincome:
-                this.basicEpsNetIncome = value;
-                break;
-            case costofrevenue:
-                this.costOfRevenue = value;
-                break;
-            case depreciationamortizationexpense:
-                this.depreciationAmortizationExpense = value;
-                break;
-            case dilutedepsnetincome:
-                this.dilutedEpsNetIncome = value;
-                break;
-            case discontinuedoperations:
-                this.discontinuedOperations = value;
-                break;
-            case ebit:
-                this.earningsBeforeInterestAndTax = value;
-                break;
-            case equityearnings:
-                this.equityEarnings = value;
-                break;
-            case extraordinaryitems:
-                this.extraOrdinaryItems = value;
-                break;
-            case grossprofit:
-                this.grossProfit = value;
-                break;
-            case incomebeforeextraordinaryitems:
-                this.incomeBeforeExtraordinaryItems = value;
-                break;
-            case incomebeforetaxes:
-                this.incomeBeforeTaxes = value;
-                break;
-            case incometaxes:
-                this.incomeTaxes = value;
-                break;
-            case interestexpense:
-                this.interestExpense = value;
-                break;
-            case interestincome:
-                this.interestIncome = value;
-                break;
-            case minorityinterestequityearnings:
-                this.minorityInterestEquityEarnings = value;
-                break;
-            case netincome:
-                this.netIncome = value;
-                break;
-            case netincomeapplicabletocommon:
-                this.netIncomeApplicableToCommon = value;
-                break;
-            case operatingprofit:
-                this.operatingProfit = value;
-                break;
-            case othernonoperatingincomeexpense:
-                this.otherNonOperatingIncomeExpense = value;
-                break;
-            case otheroperatingexpenses:
-                this.otherOperatingExpenses = value;
-                break;
-            case researchdevelopmentexpense:
-                this.researchDevelopmentExpense = value;
-                break;
-            case restructuringremediationimpairmentprovisions:
-                this.restructuringRemediationImpairmentProvisions = value;
-                break;
-            case sellinggeneraladministrativeexpenses:
-                this.sellingGeneralAdministrativeExpenses = value;
-                break;
-            case totalrevenue:
-                this.totalRevenue = value;
-                break;
-        }
+    public Class<EdgarIncomeStatementConsolidatedFields> getEnumType() {
+        return EdgarIncomeStatementConsolidatedFields.class;
     }
 
     @Override
-    public Class<EdgarIncomeStatementConsolidatedFields> getEnumType() {
-        return EdgarIncomeStatementConsolidatedFields.class;
+    public String getFieldName(EdgarIncomeStatementConsolidatedFields enumFieldType) {
+        return enumFieldType.getKeyName();
     }
 }

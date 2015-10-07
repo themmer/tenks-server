@@ -12,15 +12,15 @@ public class EdgarFinancialRequest {
     private EdgarFinancialRequestType edgarFinancialRequestType;
     // TODO do we want to support multiple symbols here
     // TODO we will want to do toStrings for all the error handling and on the pojos
-    private String symbolTicker;
+    private String tickerSymbol;
 
-    public EdgarFinancialRequest(EdgarFinancialRequestType edgarFinancialRequestType, String symbolTicker) {
+    public EdgarFinancialRequest(EdgarFinancialRequestType edgarFinancialRequestType, String tickerSymbol) {
         // Fail Fast
         assert(edgarFinancialRequestType != null);
-        assert(!Strings.isNullOrEmpty(symbolTicker));
+        assert(!Strings.isNullOrEmpty(tickerSymbol));
 
         this.edgarFinancialRequestType = edgarFinancialRequestType;
-        this.symbolTicker = symbolTicker;
+        this.tickerSymbol = tickerSymbol;
     }
 
     public int getNumberOfPeriods() {
@@ -35,7 +35,7 @@ public class EdgarFinancialRequest {
         return edgarFinancialRequestType;
     }
 
-    public String getSymbolTicker() {
-        return symbolTicker;
+    public String getTickerSymbol() {
+        return tickerSymbol;
     }
 }

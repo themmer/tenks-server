@@ -40,7 +40,7 @@ public abstract class EdgarRestClient<T extends EdgarKeyValueResponse, E> {
                 path("v2/corefinancials/ann"). //
                 queryParam(EdgarConstants.NumberOfPeriodsParam, String.valueOf(edgarFinancialRequest.getNumberOfPeriods())). //
                 queryParam(EdgarConstants.FieldsParam, edgarFinancialRequest.getEdgarFinancialRequestType().getValue()). //
-                queryParam(EdgarConstants.TicketSymbolsParam, edgarFinancialRequest.getSymbolTicker()). //
+                queryParam(EdgarConstants.TicketSymbolsParam, edgarFinancialRequest.getTickerSymbol()). //
                 queryParam(EdgarConstants.AppKeyParam, EdgarConstants.getRandomAppKey()). //
                 request(MediaType.APPLICATION_JSON);
 

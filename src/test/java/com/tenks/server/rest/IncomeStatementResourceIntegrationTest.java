@@ -38,7 +38,7 @@ public class IncomeStatementResourceIntegrationTest extends ResourceTest {
 
     @Test
     public void testIncomeStatement() {
-        final String response = target("income").queryParam(TenKsConstants.SymbolTicker, "MSFT"). //
+        final String response = target("income").queryParam(TenKsConstants.TickerSymbol, "MSFT"). //
             request(MediaType.APPLICATION_JSON).get(String.class);
         assertNotNull(response);
         System.out.println("resp: " + response);

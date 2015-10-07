@@ -10,5 +10,5 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TenKsConstants {
 
     // REST params for server side
-    public static final String SymbolTicker = "symbolTicker";
+    public static final String TickerSymbol = "tickerSymbol";
 }

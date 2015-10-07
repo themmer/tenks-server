@@ -5,11 +5,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tenks.client.rest.EdgarBalanceSheetClient;
 import com.tenks.client.rest.EdgarBalanceSheetRestClientImpl;
-import com.tenks.client.rest.EdgarCashFlowStatementClient;
-import com.tenks.client.rest.EdgarCashFlowStatementRestClientImpl;
 import com.tenks.client.rest.dto.EdgarFinancialRequest;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.client.rest.util.TenKsConstants;
+import com.tenks.client.rest.util.TenksEnumAdapterFactory;
 import com.tenks.dto.BalanceSheetConsolidated;
 import com.tenks.dto.ResponseWrapper;
 
@@ -31,10 +30,12 @@ public class BalanceSheetResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBalanceSheet(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
-        assert (symbolTicker != null);
+    public Response getBalanceSheet(@QueryParam(TenKsConstants.TickerSymbol) String tickerSymbol) {
+        assert (tickerSymbol != null);
 
-        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.BalanceSheetConsolidated, symbolTicker);
+        // TODO cache check will be here
+
+        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.BalanceSheetConsolidated, tickerSymbol);
         ResponseWrapper<BalanceSheetConsolidated> responseWrapper = edgarBalanceSheetClient.getBalanceSheet(request);
 
         // TODO inject Gson - should be thread safe

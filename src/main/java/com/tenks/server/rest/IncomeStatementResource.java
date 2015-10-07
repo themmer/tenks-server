@@ -3,8 +3,6 @@ package com.tenks.server.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tenks.client.rest.EdgarBalanceSheetClient;
-import com.tenks.client.rest.EdgarBalanceSheetRestClientImpl;
 import com.tenks.client.rest.EdgarIncomeStatementClient;
 import com.tenks.client.rest.EdgarIncomeStatementRestClientImpl;
 import com.tenks.client.rest.dto.EdgarFinancialRequest;
@@ -13,7 +11,6 @@ import com.tenks.client.rest.util.TenKsConstants;
 import com.tenks.dto.IncomeStatementConsolidated;
 import com.tenks.dto.ResponseWrapper;
 
-import javax.validation.constraints.AssertTrue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -31,10 +28,12 @@ public class IncomeStatementResource {
      */
     @GET 
     @Produces(MediaType.APPLICATION_JSON)
-    public Response Response(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
-        assert (symbolTicker != null);
+    public Response Response(@QueryParam(TenKsConstants.TickerSymbol) String tickerSymbol) {
+        assert (tickerSymbol != null);
 
-        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.IncomeStatementConsolidated, symbolTicker);
+        // TODO cache check will be here
+
+        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.IncomeStatementConsolidated, tickerSymbol);
         ResponseWrapper<IncomeStatementConsolidated> responseWrapper = edgarIncomeStatementClient.getIncomeStatement(request);
 
         // TODO inject Gson - should be thread safe

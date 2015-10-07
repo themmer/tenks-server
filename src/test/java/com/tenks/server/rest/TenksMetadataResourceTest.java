@@ -1,6 +1,5 @@
 package com.tenks.server.rest;
 
-import com.tenks.client.rest.util.TenKsConstants;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,17 +9,12 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
 import static org.testng.Assert.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 /**
- * Income Statement Resource Tester.
- *
- * @author Tim Hemmer
- * @version 1.0
- * @since <pre>Jul 21, 2015</pre>
+ * Created by Tim on 9/24/2015.
  */
-public class BalanceSheetResourceIntegrationTest extends ResourceTest {
-
+public class TenksMetadataResourceTest extends ResourceTest {
     @BeforeMethod
     public void before() throws Exception {
         super.setUp();
@@ -32,16 +26,19 @@ public class BalanceSheetResourceIntegrationTest extends ResourceTest {
     }
 
     @Override
-      protected Application configure() {
-        return new ResourceConfig(BalanceSheetResource.class);
+    protected Application configure() {
+        return new ResourceConfig(MetadataResource.class);
     }
 
     @Test
-    public void testBalanceSheet() {
-        final String response = target("balanceSheet").queryParam(TenKsConstants.TickerSymbol, "MSFT"). //
+    public void testMetadata() {
+        final String response = target("metadata"). //
                 request(MediaType.APPLICATION_JSON).get(String.class);
         assertNotNull(response);
-        System.out.println(response);
-        assertTrue(response.contains("totalStockholdersEquity"));
+        System.out.println("resp: " + response);
+
+        assertTrue(response.contains("balanceSheet"));
+        assertTrue(response.contains("cashFlowStatement"));
+        assertTrue(response.contains("incomeStatement"));
     }
-} 
+}

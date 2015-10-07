@@ -8,6 +8,7 @@ import com.tenks.client.rest.EdgarCashFlowStatementRestClientImpl;
 import com.tenks.client.rest.dto.EdgarFinancialRequest;
 import com.tenks.client.rest.util.EdgarFinancialRequestType;
 import com.tenks.client.rest.util.TenKsConstants;
+import com.tenks.client.rest.util.TenksEnumAdapterFactory;
 import com.tenks.dto.CashFlowStatementConsolidated;
 import com.tenks.dto.ResponseWrapper;
 
@@ -28,10 +29,12 @@ public class CashFlowStatementResource {
      */
     @GET 
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getIt(@QueryParam(TenKsConstants.SymbolTicker) String symbolTicker) {
-        assert (symbolTicker != null);
+    public Response getIt(@QueryParam(TenKsConstants.TickerSymbol) String tickerSymbol) {
+        assert (tickerSymbol != null);
 
-        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, symbolTicker);
+        // TODO cache check will be here
+
+        EdgarFinancialRequest request = new EdgarFinancialRequest(EdgarFinancialRequestType.CashFlowStatementConsolidated, tickerSymbol);
         ResponseWrapper<CashFlowStatementConsolidated> responseWrapper = edgarCashFlowStatementClient.getCashFlowStatement(request);
 
         // TODO inject Gson - should be thread safe
