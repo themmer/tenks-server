@@ -21,7 +21,6 @@ import java.util.Map;
 @Path("/metadata")
 public class MetadataResource {
 
-    private EdgarIncomeStatementClient edgarIncomeStatementClient = new EdgarIncomeStatementRestClientImpl();
     private String metaResponse = null;
 
     /**
