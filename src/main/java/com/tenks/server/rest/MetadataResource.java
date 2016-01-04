@@ -3,8 +3,6 @@ package com.tenks.server.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tenks.client.rest.EdgarIncomeStatementClient;
-import com.tenks.client.rest.EdgarIncomeStatementRestClientImpl;
 import com.tenks.client.rest.util.*;
 
 import javax.ws.rs.GET;
